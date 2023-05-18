@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import './style.css'
 // React element
 //const title = React.createElement('h1', { id: 'title' }, 'Hello React')
 //JSX
@@ -34,7 +35,7 @@ const Title = () => {
 const Content = () => {
     return (
         <React.Fragment>
-            <p>
+            <p className="red">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. At
                 laudantium possimus quas excepturi culpa eveniet commodi, nemo
                 praesentium eius esse maxime facilis, exercitationem dolorem
@@ -51,9 +52,9 @@ const Content = () => {
 }
 const App = () => {
     return (
-        <div>
+        <>
             <Title /> <Content />
-        </div>
+        </>
     )
 }
 
