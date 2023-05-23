@@ -4,9 +4,14 @@ import './style.css'
 
 type TitleProps = {
     title: string
+    num: number
 }
-const Title = ({ title }: TitleProps) => {
-    return <h1>Hello {title} component</h1>
+const Title = ({ title, num }: TitleProps) => {
+    return (
+        <h1>
+            Hello {title} {num}
+        </h1>
+    )
 }
 const Content = () => {
     return (
@@ -29,8 +34,8 @@ const Content = () => {
 const App = () => {
     return (
         <>
-            <Title title="App" /> <Content />
-            <Title title="React" /> <Content />
+            <Title title="App" num={2} /> <Content />
+            <Title title="React" num={3} /> <Content />
         </>
     )
 }
