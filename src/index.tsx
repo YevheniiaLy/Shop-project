@@ -1,18 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './style.css'
+import Title from './Title'
 
-type TitleProps = {
-    title: string
-    num: number
-}
-const Title = ({ title, num }: TitleProps) => {
-    return (
-        <h1>
-            Hello {title} {num}
-        </h1>
-    )
-}
 const Content = () => {
     return (
         <React.Fragment>
@@ -34,7 +24,7 @@ const Content = () => {
 const App = () => {
     return (
         <>
-            <Title title="App" num={2} /> <Content />
+            <Title title="App" /> <Content />
             <Title title="React" num={3} /> <Content />
         </>
     )
