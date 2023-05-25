@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Logo from 'components/Logo/Logo'
 import Menu from 'components/Menu/Menu'
+import CartHeader from 'components/CartHeader/CartHeader'
 
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -25,6 +26,7 @@ const Header = (props: Props) => {
                     </IconButton>
                     <Logo />
                     <Menu />
+                    <CartHeader />
                 </Toolbar>
             </Container>
         </AppBar>
