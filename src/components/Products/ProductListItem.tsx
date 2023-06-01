@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     Button,
     Card,
@@ -15,7 +16,42 @@ type Props = {
     image: string
 }
 
-const ProductListItem = ({
+class ProductListItem extends React.Component<Props> {
+    render() {
+        return (
+            <Card className="product" variant="outlined">
+                <CardContent>
+                    <div className="product-img">
+                        <img src={this.props.image} alt="iphone" />
+                    </div>
+                    <h4 className="product-title">{this.props.title}</h4>
+                    <p className="product-description">
+                        {this.props.description}
+                    </p>
+                    <div className="product-features">
+                        Type: {this.props.type}
+                    </div>
+                    <div className="product-features">
+                        Capacity: {this.props.capacity}
+                    </div>
+                    <div className="product-price">
+                        Price: $ {this.props.price}
+                    </div>
+
+                    <div className="product-quantity">
+                        <Button variant="outlined">-</Button>
+                        <TextField value="1" size="small" />
+                        <Button variant="outlined">+</Button>
+                    </div>
+                    <CardActions className="btn-wrap">
+                        <Button variant="outlined">Add to cart</Button>
+                    </CardActions>
+                </CardContent>
+            </Card>
+        )
+    }
+}
+/* const ProductListItem = ({
     title,
     description,
     capacity,
@@ -23,29 +59,7 @@ const ProductListItem = ({
     price,
     image,
 }: Props) => {
-    return (
-        <Card className="product" variant="outlined">
-            <CardContent>
-                <div className="product-img">
-                    <img src={image} alt="iphone" />
-                </div>
-                <h4 className="product-title">{title}</h4>
-                <p className="product-description">{description}</p>
-                <div className="product-features">Type: {type}</div>
-                <div className="product-features">Capacity: {capacity}</div>
-                <div className="product-price">Price: $ {price}</div>
-
-                <div className="product-quantity">
-                    <Button variant="outlined">-</Button>
-                    <TextField value="1" size="small" />
-                    <Button variant="outlined">+</Button>
-                </div>
-                <CardActions className="btn-wrap">
-                    <Button variant="outlined">Add to cart</Button>
-                </CardActions>
-            </CardContent>
-        </Card>
-    )
-}
+    
+} */
 
 export default ProductListItem
