@@ -1,3 +1,4 @@
+import React from 'react'
 import {
     Button,
     Card,
@@ -16,6 +17,38 @@ type Props = {
     price: number
     image: string
 }
+type State = {
+    count: number
+    color: string
+}
+class ProductListItem extends React.Component<Props, State> {
+    state = {
+        count: 1,
+        color: 'green',
+    }
+
+    onIncrementClick = () => {
+        this.setState((prevState) => {
+            const newCount =
+                prevState.count + 1 <= 10
+                    ? prevState.count + 1
+                    : prevState.count
+            return {
+                count: newCount,
+            }
+        })
+    }
+
+    onDecrementClick = () => {
+        this.setState((prevState) => {
+            const newCount =
+                prevState.count - 1 >= 1 ? prevState.count - 1 : prevState.count
+            return {
+                count: newCount,
+            }
+        })
+    }
+
 
 const ProductListItem = ({
     title,
@@ -69,6 +102,7 @@ const ProductListItem = ({
             </CardContent>
         </Card>
     )
+
 }
 
 export default ProductListItem

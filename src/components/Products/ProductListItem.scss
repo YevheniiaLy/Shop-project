@@ -22,7 +22,10 @@
     text-align: center;
     img {
         width: 150px;
-        height: 180px;
+
+    
+        height: 185px;
+
     }
 }
 .product-quantity {
@@ -32,4 +35,10 @@
     input {
         text-align: center;
     }
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
 }
