@@ -1,19 +1,17 @@
-import Button from '@mui/material/Button'
-import { NavLink } from 'react-router-dom'
+import MenuItem from './MenuItem'
+
 type Props = {}
+
 const Menu = (props: Props) => {
     return (
         <>
-            <Button color="inherit">
-                <NavLink to={'/'}>Home</NavLink>
-            </Button>
-            <Button color="inherit">About</Button>
-            <Button color="inherit">Payment</Button>
-            <Button color="inherit">shipping</Button>
-            <Button color="inherit">
-                <NavLink to={'/cart'}>Cart</NavLink>
-            </Button>
+            <MenuItem to="/">Home</MenuItem>
+            <MenuItem to="/about">About</MenuItem>
+            <MenuItem to="/payment">Payment</MenuItem>
+            <MenuItem to="/shipping">Shipping</MenuItem>
+            <MenuItem to="/cart">Cart</MenuItem>
         </>
     )
 }
+
 export default Menu
