@@ -7,11 +7,15 @@ import { Route, Routes } from 'react-router-dom'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/CartPage/CartPage'
 import { Container } from '@mui/material'
+import { createContext } from 'react'
 
 type ProductsInCart = {
     [id: number]: number
 }
-
+type Context = {
+    removeProductFromCart: (id: number) => void
+}
+export const AppContext = createContext<Context | null>(null)
 const App = () => {
     const [productsInCart, setProductsInCart] = useState<ProductsInCart>({
         1: 5,
@@ -33,26 +37,29 @@ const App = () => {
     }
     return (
         <StyledEngineProvider injectFirst>
-            <CssBaseline />
-            <Header productsInCart={productsInCart} />
-            <button onClick={() => removeProductFromCart(1)}></button>
-            <Container sx={{ padding: '40px 0' }}>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Home addProductToCart={addProductToCart} />}
-                    />
-                    <Route
-                        path="/cart"
-                        element={
-                            <CartPage
-                                productsInCart={productsInCart}
-                                removeProductFromCart={removeProductFromCart}
-                            />
-                        }
-                    />
-                </Routes>
-            </Container>
+            <AppContext.Provider
+                value={{ removeProductFromCart: removeProductFromCart }}
+            >
+                <CssBaseline />
+                <Header productsInCart={productsInCart} />
+                <button onClick={() => removeProductFromCart(1)}></button>
+                <Container sx={{ padding: '40px 0' }}>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <Home addProductToCart={addProductToCart} />
+                            }
+                        />
+                        <Route
+                            path="/cart"
+                            element={
+                                <CartPage productsInCart={productsInCart} />
+                            }
+                        />
+                    </Routes>
+                </Container>
+            </AppContext.Provider>
         </StyledEngineProvider>
     )
 }
