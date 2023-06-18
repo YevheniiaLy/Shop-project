@@ -3,6 +3,7 @@ import { Product } from 'utils/productsArray'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useContext } from 'react'
 import { AppContext } from 'Container/App/App'
+import Quantity from 'components/Quantity/Quantity'
 type Props = {
     product: Product
     productCount: number
@@ -26,6 +27,21 @@ const CartProductListItemExtended = ({
                         Price for one item: {product.price}
                     </div>
                     <div className="product-features">Count:{productCount}</div>
+                    <Quantity
+                        count={productCount}
+                        onIncrementClick={() =>
+                            data?.changeProductQuantity(
+                                product.id,
+                                productCount + 1
+                            )
+                        }
+                        onDecrementClick={() =>
+                            data?.changeProductQuantity(
+                                product.id,
+                                productCount - 1
+                            )
+                        }
+                    />
                     <Button
                         variant="outlined"
                         onClick={() => data?.removeProductFromCart(product.id)}
