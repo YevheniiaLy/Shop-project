@@ -1,10 +1,4 @@
-import {
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    TextField,
-} from '@mui/material'
+import { Button, Card, CardActions, CardContent } from '@mui/material'
 import './ProductListItem.scss'
 import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
@@ -55,6 +49,7 @@ const ProductListItem = ({
                     count={count}
                     onIncrementClick={onIncrementClick}
                     onDecrementClick={onDecrementClick}
+                    minCount={1}
                 />
                 <CardActions className="btn-wrap">
                     <Button

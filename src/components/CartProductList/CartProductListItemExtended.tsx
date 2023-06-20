@@ -36,11 +36,14 @@ const CartProductListItemExtended = ({
                             )
                         }
                         onDecrementClick={() =>
-                            data?.changeProductQuantity(
-                                product.id,
-                                productCount - 1
-                            )
+                            productCount === 1
+                                ? data?.removeProductFromCart(product.id)
+                                : data?.changeProductQuantity(
+                                      product.id,
+                                      productCount - 1
+                                  )
                         }
+                        minCount={0}
                     />
                     <Button
                         variant="outlined"
