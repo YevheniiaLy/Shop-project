@@ -58,6 +58,7 @@ const productsArray: Product[] = [
         capacity: '64',
         price: 1500,
         image: '/images/iphone-silver.webp',
+        category: 'phone',
     },
     {
         id: 6,
@@ -67,6 +68,7 @@ const productsArray: Product[] = [
         capacity: '256',
         price: 500,
         image: '/images/iphone-green.webp',
+        category: 'phone',
     },
 ]
 export const getProductsObject = (array: Product[]) =>
