@@ -1,4 +1,6 @@
+
 import { Button, Card, CardActions, CardContent } from '@mui/material'
+
 import './ProductListItem.scss'
 import { useState } from 'react'
 import Quantity from 'components/Quantity/Quantity'
@@ -16,6 +18,38 @@ type Props = {
     image: string
     addProductToCart: (id: number, count: number) => void
 }
+type State = {
+    count: number
+    color: string
+}
+class ProductListItem extends React.Component<Props, State> {
+    state = {
+        count: 1,
+        color: 'green',
+    }
+
+    onIncrementClick = () => {
+        this.setState((prevState) => {
+            const newCount =
+                prevState.count + 1 <= 10
+                    ? prevState.count + 1
+                    : prevState.count
+            return {
+                count: newCount,
+            }
+        })
+    }
+
+    onDecrementClick = () => {
+        this.setState((prevState) => {
+            const newCount =
+                prevState.count - 1 >= 1 ? prevState.count - 1 : prevState.count
+            return {
+                count: newCount,
+            }
+        })
+    }
+
 
 const ProductListItem = ({
     id,
@@ -77,6 +111,7 @@ const ProductListItem = ({
             </CardContent>
         </Card>
     )
+
 }
 
 export default ProductListItem
