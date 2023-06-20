@@ -7,11 +7,17 @@ import { Route, Routes } from 'react-router-dom'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/CartPage/CartPage'
 import { Container } from '@mui/material'
+import { createContext } from 'react'
+import { omit } from 'lodash'
 
 type ProductsInCart = {
     [id: number]: number
 }
-
+type Context = {
+    removeProductFromCart: (id: number) => void
+    changeProductQuantity: (id: number, count: number) => void
+}
+export const AppContext = createContext<Context | null>(null)
 const App = () => {
     const [productsInCart, setProductsInCart] = useState<ProductsInCart>({
         1: 5,
@@ -25,34 +31,42 @@ const App = () => {
         }))
     }
     const removeProductFromCart = (id: number) => {
-        setProductsInCart((prevState) => {
-            let prevProductsInCart = { ...prevState }
-            delete prevProductsInCart[id]
-            return prevProductsInCart
-        })
+        setProductsInCart((prevState) => omit(prevState, id))
+    }
+    const changeProductQuantity = (id: number, count: number) => {
+        setProductsInCart((prevState) => ({
+            ...prevState,
+            [id]: count,
+        }))
     }
     return (
         <StyledEngineProvider injectFirst>
-            <CssBaseline />
-            <Header productsInCart={productsInCart} />
-            <button onClick={() => removeProductFromCart(1)}></button>
-            <Container sx={{ padding: '40px 0' }}>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<Home addProductToCart={addProductToCart} />}
-                    />
-                    <Route
-                        path="/cart"
-                        element={
-                            <CartPage
-                                productsInCart={productsInCart}
-                                removeProductFromCart={removeProductFromCart}
-                            />
-                        }
-                    />
-                </Routes>
-            </Container>
+            <AppContext.Provider
+                value={{
+                    removeProductFromCart: removeProductFromCart,
+                    changeProductQuantity: changeProductQuantity,
+                }}
+            >
+                <CssBaseline />
+                <Header productsInCart={productsInCart} />
+                <button onClick={() => removeProductFromCart(1)}></button>
+                <Container sx={{ padding: '40px 0' }}>
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={
+                                <Home addProductToCart={addProductToCart} />
+                            }
+                        />
+                        <Route
+                            path="/cart"
+                            element={
+                                <CartPage productsInCart={productsInCart} />
+                            }
+                        />
+                    </Routes>
+                </Container>
+            </AppContext.Provider>
         </StyledEngineProvider>
     )
 }
